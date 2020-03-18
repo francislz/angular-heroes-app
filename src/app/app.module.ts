@@ -38,9 +38,6 @@ import { InMemoryDataService } from './in-memory-data.service';
     MatInputModule,
     MDBBootstrapModule.forRoot(),
     AppRoutingModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    ),
   ],
   providers: [HeroService],
   bootstrap: [AppComponent]

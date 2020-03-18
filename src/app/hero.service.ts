@@ -12,9 +12,9 @@ import { MessageService } from './message.service';
   providedIn: 'root'
 })
 export class HeroService {
-  private heroesUrl = 'api/heroes';  // URL to web api
+  private heroesUrl = 'https://localhost:5001/heroes';  // URL to web api
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', rejectUnauthorized: 'false'})
   };
 
   constructor(
@@ -27,6 +27,7 @@ export class HeroService {
    */
   getHeroes(): Observable<Hero[]> {
     this.messageService.add('HeroService: fetched heroes');
+
     return this.http.get<Hero[]>(this.heroesUrl).pipe(
       tap(_ => this.log('fetched heroes')),
       catchError(this.handleError<Hero[]>('getHeroes', []))
@@ -43,7 +44,7 @@ export class HeroService {
   }
 
   /** PUT: update the hero on the server */
-  updateHero (hero: Hero): Observable<any> {
+  updateHero(hero: Hero): Observable<any> {
     return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
       tap(_ => this.log(`updated hero id=${hero.id}`)),
       catchError(this.handleError<any>('updateHero'))
@@ -94,7 +95,7 @@ export class HeroService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
