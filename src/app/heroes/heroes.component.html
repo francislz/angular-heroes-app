@@ -1,25 +1,33 @@
-<div>
-  <label>Hero name:
-    <!-- #heroName é o id do input -->
-    <input #heroName />
-  </label>
-  <!-- (click) passes input value to add() and then clears the input
-    recebe o valor do input e passsa via parametro pra funcao add
-  -->
-  <button (click)="add(heroName.value); heroName.value=''">
-    add
-  </button>
-</div>
+<form>
+  <div class="form-group row">
+    <label class="col-12" for="heroName">Hero Name:</label>
+    <div class="col">
+      <!-- #heroName é o id do input -->
+      <input #heroName class="form-control"/>
+    </div>
+    <div class="col-auto">
+      <!-- (click) passes input value to add() and then clears the input
+      recebe o valor do input e passsa via parametro pra funcao add
+      -->
+      <button class="btn btn-success" (click)="add(heroName.value); heroName.value=''">
+        <i class="fas fa-plus"></i> New
+      </button>
+    </div>
+  </div>
+</form>
 <div class="row">
   <div class="col">
     <h2>My Heroes</h2>
-    <ul class="heroes">
-      <li *ngFor="let hero of heroes">
+    <ul class="list-group">
+      <li *ngFor="let hero of heroes" class="list-group-item d-flex justify-content-between align-items-center">
         <a routerLink="/detail/{{hero.id}}">
           <span class="badge">{{hero.id}}</span> {{hero.nome}}
         </a>
-        <button class="delete" title="delete hero"
-          (click)="delete(hero)">x</button>
+        <!-- <span class="badge badge-primary badge-pill"> -->
+          <button class="btn btn-danger" title="delete hero"(click)="delete(hero)">
+            <i class="fas fa-trash"></i>
+          </button>
+        <!-- </span> -->
       </li>
     </ul>
   </div>

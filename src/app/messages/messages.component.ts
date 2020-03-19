@@ -8,9 +8,14 @@ import { MessageService } from '../message.service';
 })
 export class MessagesComponent implements OnInit {
 
+  open = false;
+
   constructor(public messageService: MessageService) { }
 
   ngOnInit(): void {
   }
 
+  toggleModal(): void {
+    this.open = !this.open;
+  }
 }

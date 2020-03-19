@@ -1,6 +1,12 @@
-<div class="container">
+<header>
   <h1 style="margin: 1em;">{{title}}</h1>
   <app-nav-bar></app-nav-bar>
-  <router-outlet></router-outlet>
-  <app-messages></app-messages>
-</div>
+</header>
+<main role="main">
+  <div class="container-fluid">
+    <div class="row justify-content-md-center">
+      <router-outlet></router-outlet>
+    </div>
+    <app-messages></app-messages>
+  </div>
+</main>
